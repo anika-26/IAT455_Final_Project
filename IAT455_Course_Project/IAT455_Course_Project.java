@@ -28,9 +28,19 @@ class IAT455_Course_Project extends Frame {
 	BufferedImage imageOne;
 	BufferedImage imageTwo;
 	BufferedImage imageThree;
+	BufferedImage imageFour;
+	BufferedImage imageFive;
+	BufferedImage imageSix;
 	BufferedImage outputImage; // use later for middle edited image 
 	
+	
+	//depth images
 	BufferedImage imageOneDepth;
+	BufferedImage imageTwoDepth;
+	BufferedImage imageThreeDepth;
+	BufferedImage imageFourDepth;
+	BufferedImage imageFiveDepth;
+	BufferedImage imageSixDepth;
 
 	int width; // width of the image
 	int height; // height of the image
@@ -40,9 +50,22 @@ class IAT455_Course_Project extends Frame {
 		// Get an image from the specified file in the current directory on the
 		// local hard disk.
 		try {
+			//load original images 
 			imageOne = ImageIO.read(new File("mushrooms.jpg"));
-			imageTwo = ImageIO.read(new File("otter.jpg"));
-			imageThree = ImageIO.read(new File("penguins.jpg"));
+			imageTwo = ImageIO.read(new File("lake.jpg"));
+			imageThree = ImageIO.read(new File("boatimage.jpg"));
+			imageFour = ImageIO.read(new File("beachimage.jpg"));
+			imageFive = ImageIO.read(new File("treeimage.jpg"));
+			imageSix = ImageIO.read(new File("fallpark.jpg"));
+		
+			//load corresponding depth images
+			imageOneDepth = ImageIO.read(new File("mushroomsdepth.png"));
+			imageTwoDepth = ImageIO.read(new File("lake_depth.png"));
+			imageThreeDepth = ImageIO.read(new File("boatimage_depth.png"));
+			imageFourDepth = ImageIO.read(new File("beachimage_depth.png"));
+			imageFiveDepth = ImageIO.read(new File("treeimage_depth.png"));
+			imageSixDepth = ImageIO.read(new File("fallpark_depth.png"));
+			
 			outputImage = ImageIO.read(new File("mushrooms.jpg")); // start with first image off default?? 
 
 		} catch (Exception e) {
