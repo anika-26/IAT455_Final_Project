@@ -322,6 +322,14 @@ public void paint(Graphics g) {
     g.drawString("Image 2", 50, 175);
     g.drawString("Depth Map", w/4+80, 175);
     
+    g.drawString("Image 3", 50, 305);
+    g.drawString("Depth Map", w/4+80, 305);
+    g.drawString("Image 4", 50, 435);
+    g.drawString("Depth Map", w/4+80, 435);
+    g.drawString("Image 5", 50, 565);
+    g.drawString("Depth Map", w/4+80, 565);
+    
+    
     
 }
 // =======================================================//
