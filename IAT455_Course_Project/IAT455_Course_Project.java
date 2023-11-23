@@ -264,8 +264,10 @@ protected int getRed2(int pixel) {
 public void paint(Graphics g) {
 	
 	//if working with different images, this may need to be adjusted
-	int w = width ; 
-	int h = height ;
+	int w = width/4 ; 
+	int h = height/4 ;
+	
+
 	
 	//image titles
 //	g.drawString("Image 1", 50, 70);
@@ -284,14 +286,27 @@ public void paint(Graphics g) {
 	g2.setTransform(oldForm); //putting transform back to old 
 	
 	//draw images 
-	g.drawImage(imageOne,50,30,w/8, h/8,this);
-	g.drawImage(imageTwo,50,250,w/8, h/8,this);
-	g.drawImage(imageThree,50,470,w/8, h/8,this);
+	g.drawImage(imageOne,50,50,w/4, h/4,this);
+	g.drawImage(imageOneDepth,w/4 +80,50,w/4, h/4,this);
+	
+	
+	g.drawImage(imageTwo,50,180,w/4, h/4,this);
+	g.drawImage(imageTwoDepth,w/4 +80,180,w/4, h/4,this);
+	
+	g.drawImage(imageThree,50,310,w/4, h/4,this);
+	g.drawImage(imageThreeDepth,w/4 +80,310,w/4, h/4,this);
+	
+	g.drawImage(imageFour,50,440,w/4, h/4,this);
+	g.drawImage(imageFourDepth,w/4 +80,440,w/4, h/4,this);
+	
+	g.drawImage(imageFive,50,570,w/4, h/4,this);
+	g.drawImage(imageFiveDepth,w/4 +80,570,w/4, h/4,this);
+	
 	
 	//g.drawImage(imageThree,50,470,w/8, h/8,this);
 	
 	//output image 
-	g.drawImage(outputImage,560,200,w/4, h/4,this);
+	g.drawImage(outputImage,560,200,w/2, h/2,this);
 	//g.drawImage(imageOneDepth,560,200,w/4, h/4,this);
 	g2.drawString("Resulting Image", 560, 180);
 	
@@ -302,6 +317,10 @@ public void paint(Graphics g) {
     Font f1 = new Font("Verdana", Font.PLAIN, 13); 
     g.setFont(f1); 
     
+    g.drawString("Image 1", 50, 45);
+    g.drawString("Depth Map", w/4+80, 45);
+    g.drawString("Image 2", 50, 175);
+    g.drawString("Depth Map", w/4+80, 175);
     
     
 }
