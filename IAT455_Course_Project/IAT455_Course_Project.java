@@ -31,6 +31,8 @@ class IAT455_Course_Project extends Frame {
 	BufferedImage imageFour;
 	BufferedImage imageFive;
 	BufferedImage imageSix;
+	
+	
 	BufferedImage outputImage; // use later for middle edited image 
 	
 	
@@ -41,6 +43,11 @@ class IAT455_Course_Project extends Frame {
 	BufferedImage imageFourDepth;
 	BufferedImage imageFiveDepth;
 	BufferedImage imageSixDepth;
+	
+	BufferedImage selectionOne, selectionTwo, selectDepthOne, selectDepthTwo;
+	
+	//int to count how many clicks of mouse 
+	int count =0;
 
 	int width; // width of the image
 	int height; // height of the image
@@ -51,7 +58,7 @@ class IAT455_Course_Project extends Frame {
 		// local hard disk.
 		try {
 			//load original images 
-			imageOne = ImageIO.read(new File("mushrooms.jpg"));
+			imageOne = ImageIO.read(new File("penguins.jpg"));
 			imageTwo = ImageIO.read(new File("lake.jpg"));
 			imageThree = ImageIO.read(new File("boatimage.jpg"));
 			imageFour = ImageIO.read(new File("beachimage.jpg"));
@@ -59,14 +66,14 @@ class IAT455_Course_Project extends Frame {
 			imageSix = ImageIO.read(new File("fallpark.jpg"));
 		
 			//load corresponding depth images
-			imageOneDepth = ImageIO.read(new File("mushroomsdepth.png"));
+			imageOneDepth = ImageIO.read(new File("penguinsdepth.png"));
 			imageTwoDepth = ImageIO.read(new File("lake_depth.png"));
 			imageThreeDepth = ImageIO.read(new File("boatimage_depth.png"));
 			imageFourDepth = ImageIO.read(new File("beachimage_depth.png"));
 			imageFiveDepth = ImageIO.read(new File("treeimage_depth.png"));
 			imageSixDepth = ImageIO.read(new File("fallpark_depth.png"));
 			
-			outputImage = ImageIO.read(new File("mushrooms.jpg")); // start with first image off default?? 
+			
 
 		} catch (Exception e) {
 			System.out.println("Cannot load the provided image");
@@ -80,10 +87,15 @@ class IAT455_Course_Project extends Frame {
 		addMouseListener(new MouseClickedListener());
 
 		
-		//imageOneDepth = createDepthMap(imageOne);
-		//outputImage = createDepthMap(imageOne);
+		//change the parameters to be the selected images 
+		//outputImage = composite(imageThree, imageFour, imageThreeDepth, imageFourDepth);
+//		if(selectionOne != null && selectionTwo!= null && selectDepthOne!= null && selectDepthTwo!=null) {
+//			outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+//			System.out.println("test");
+//			repaint();
+//		}
 		
-		checkRGB(imageOne);
+		
 		
 		//Anonymous inner-class listener to terminate program
 		this.addWindowListener(
@@ -104,19 +116,75 @@ class MouseClickedListener extends MouseAdapter{
 		
 		//check if in range of the image one  -- FIX UP SIZE LATER !!!!!!!
 			//changes output image to be the image user selected on the side 
-		if( e.getX() >= 50 && e.getX() <= 480 && e.getY() >= 30 && e.getY() <= 216) {
+			count+=1;
+			System.out.println(count);
+		if( e.getX() >= 50 && e.getX() <= width/8 && e.getY() >= 50 && e.getY() <= 50+67.5) {
 			System.out.println("in image 1 ");
-			outputImage = imageOne;
-			repaint(); 
-		} else if (e.getX() >= 50 && e.getX() <=480 && e.getY() >= 250 && e.getY() <= 466) {
+			
+			if(count ==1) {
+				selectionOne = imageOne;
+				selectDepthOne = imageOneDepth;
+			} else if(count ==2) {
+				selectionTwo = imageOne;
+				selectDepthTwo = imageOneDepth;
+				count =0;
+			}
+			
+		} else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >= 180 && e.getY() <= 180+67.6) {
 			System.out.println("in image 2");
-			outputImage = imageTwo;
-			repaint();
-		} else if (e.getX() >= 50 && e.getX() <=480 && e.getY() >=470 && e.getY() <=693) {
+			if(count ==1) {
+				selectionOne = imageTwo;
+				selectDepthOne = imageTwoDepth;
+			} else if(count ==2) {
+				selectionTwo = imageTwo;
+				selectDepthTwo = imageTwoDepth;
+				count =0;
+			}
+			
+		} else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=310 && e.getY() <=310+67.5) {
 			System.out.println("In image 3");
-			outputImage = imageThree;
+		
+			if(count ==1) {
+				selectionOne = imageThree;
+				selectDepthOne = imageThreeDepth;
+			} else if(count ==2) {
+				selectionTwo = imageThree;
+				selectDepthTwo = imageThreeDepth;
+				count =0;
+			}
+		} else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=440 && e.getY() <=440+67.5) {
+			System.out.println("In image 4");
+		
+			if(count ==1) {
+				selectionOne = imageFour;
+				selectDepthOne = imageFourDepth;
+			} else if(count ==2) {
+				selectionTwo = imageFour;
+				selectDepthTwo = imageFourDepth;
+				count =0;
+			}
+		} 
+		else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=570 && e.getY() <=570+67.5) {
+			System.out.println("In image 5");
+		
+			if(count ==1) {
+				selectionOne = imageFive;
+				selectDepthOne = imageFiveDepth;
+			} else if(count ==2) {
+				selectionTwo = imageFive;
+				selectDepthTwo = imageFiveDepth;
+				count =0;
+			}
+		} 
+		
+		
+		
+		
+		if(selectionOne != null && selectionTwo!= null && selectDepthOne!= null && selectDepthTwo!=null) {
+			outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 			repaint();
 		}
+		
 	}
 
 	@Override
@@ -147,91 +215,47 @@ class MouseClickedListener extends MouseAdapter{
 		
 }
 
-public void checkRGB(BufferedImage src) {
-	BufferedImage result = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
-	for(int i=0; i<result.getWidth(); i++) {
-		for(int j=0; j< result.getHeight(); j++) {
-			int rgb = result.getRGB(i, j);
-			//System.out.println(rgb);
-		}
-}
+
+
+
+public BufferedImage composite(BufferedImage src1, BufferedImage src2,
+		BufferedImage src1_depth, BufferedImage src2_depth) {
+
+	BufferedImage result = new BufferedImage(src1.getWidth(),
+			src1.getHeight(), src1.getType());
 	
-}
-
-	
-public BufferedImage createDepthMap(BufferedImage src) {
-	BufferedImage result = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
-	//greyscale depth map
-	
-	for(int i=0; i<result.getWidth(); i++) {
-		for(int j=0; j< result.getHeight(); j++) {
-			int rgb = result.getRGB(i, j);
-			int a = getAlpha(rgb);
-			int average = (getRed(rgb) + getBlue(rgb) + getGreen(rgb) )/3;
-			
-			int r = getRed(rgb);
-			//System.out.println(rgb);
-			//System.out.println(average);
-			rgb = (a <<24) | (average<<16) | (average<< 8) | average; //NOT WORKING ???????? 
-			int newrgb = new Color( average <<24, average <<16, average << 8).getRGB();
-			result.setRGB(i,  j, rgb);
-			
-		}
-	}
-	return result;
-}
-
-
-public BufferedImage depthMap(BufferedImage src) {
-	BufferedImage result = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
-	//greyscale depth map
-	
-	for(int i=0; i<result.getWidth(); i++) {
-		for(int j=0; j< result.getHeight(); j++) {
-			int rgb = result.getRGB(i, j);
-			
-			int r = (rgb >> 16) & 0xFF;
-	        int g = (rgb >> 8) & 0xFF;
-	        int b = (rgb & 0xFF);
-	        
-	     // Normalize and gamma correct:
-	        float rr = (float) Math.pow(r / 255.0, 2.2);
-	        float gg =(float) Math.pow(g / 255.0, 2.2);
-	        float bb = (float)Math.pow(b / 255.0, 2.2);
-
-	        // Calculate luminance:
-	        float lum = (float) (0.2126 * rr + 0.7152 * gg + 0.0722 * bb);
-
-	        // Gamma compand and rescale to byte range:
-	        int grayLevel = (int) (255.0 * Math.pow(lum, 1.0 / 2.2));
-	        int gray = (grayLevel << 16) + (grayLevel << 8) + grayLevel; 
-	        result.setRGB(i, j, gray);
-		}
-		}
-	return result;
-}
-
-
-public BufferedImage composite(BufferedImage src1, BufferedImage src2, BufferedImage src1_depth, BufferedImage src2_depth) {
-	BufferedImage result = new BufferedImage(src1.getWidth(), src1.getHeight(), src1.getType());
-	
-	//	TO DO - FINISH METHOD 	
-	
-	for(int i=0; i<result.getWidth(); i++) {
-		for(int j=0; j< result.getHeight(); j++) {
-			int rgb = src1_depth.getRGB(i, j);
+	// Complete this method
+	for (int i = 0; i < result.getWidth(); i++) {
+		for (int j = 0; j < result.getHeight(); j++) {
+			int rgb1 = src1_depth.getRGB(i, j);
 			int rgb2 = src2_depth.getRGB(i, j);
 			int rgb3 = src1.getRGB(i, j);
 			int rgb4 = src2.getRGB(i, j);
 			
 			float[] hsb = new float[3];
 			float[] hsb2 = new float[3];
+			int red = getRed(rgb1);
+			int green = getGreen(rgb1);
+			int blue = getBlue(rgb1);
 			
-			int red = getRed(rgb);
+			int red2 = getRed(rgb2);
+			int green2 = getGreen(rgb2);
+			int blue2 = getBlue(rgb2);
 			
+			hsb = Color.RGBtoHSB(red, green, blue, hsb);
+			hsb2 = Color.RGBtoHSB(red2, green2, blue2, hsb2);
+			
+			if(hsb[2] > hsb2[2]) {
+				result.setRGB(i, j, rgb3);
+			} else {
+				result.setRGB(i,j,rgb4);
+			}
+			
+;
 		}
 	}
-		
+	
+	
 	return result;
 }
 
