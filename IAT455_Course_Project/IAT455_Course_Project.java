@@ -22,6 +22,10 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+
+//if user clicks the bound box and the colour is a certain colour - then adjust the depth of those pixels 
+
+
 class IAT455_Course_Project extends Frame { 
 	
 	//images set up 
