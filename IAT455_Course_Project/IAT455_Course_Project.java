@@ -332,12 +332,15 @@ public void paint(Graphics g) {
 	g.drawImage(imageFiveDepth,w/4 +80,570,w/4, h/4,this);
 	
 	
-	//g.drawImage(imageThree,50,470,w/8, h/8,this);
+	//draw the two depth maps 
+	g.drawImage(selectDepthOne,400,50,w, h,this);
+	g.drawImage(selectDepthTwo,900,50,w, h,this);
+	
 	
 	//output image 
-	g.drawImage(outputImage,560,200,w/2, h/2,this);
+	g.drawImage(outputImage,650,400,w, h,this);
 	//g.drawImage(imageOneDepth,560,200,w/4, h/4,this);
-	g2.drawString("Resulting Image", 560, 180);
+	g2.drawString("Resulting Image", 650, 390);
 	
 	this.setSize(1500, 700);
 
