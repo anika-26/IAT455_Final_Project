@@ -53,6 +53,7 @@ class IAT455_Course_Project extends Frame {
 	
 	//int to count how many clicks of mouse 
 	int count =0;
+	int selection=0;
 
 	int width; // width of the image
 	int height; // height of the image
@@ -90,16 +91,6 @@ class IAT455_Course_Project extends Frame {
 		width = imageOne.getWidth();
 		height = imageOne.getHeight();
 		addMouseListener(new MouseClickedListener());
-
-		
-		//change the parameters to be the selected images 
-		//outputImage = composite(imageThree, imageFour, imageThreeDepth, imageFourDepth);
-//		if(selectionOne != null && selectionTwo!= null && selectDepthOne!= null && selectDepthTwo!=null) {
-//			outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
-//			System.out.println("test");
-//			repaint();
-//		}
-		
 		
 		
 		//Anonymous inner-class listener to terminate program
@@ -118,7 +109,7 @@ class MouseClickedListener extends MouseAdapter{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 			System.out.println("mouse clicked");
-		
+			
 		//check if in range of the image one  -- FIX UP SIZE LATER !!!!!!!
 			//changes output image to be the image user selected on the side 
 			count+=1;
@@ -128,8 +119,10 @@ class MouseClickedListener extends MouseAdapter{
 			
 			if(count ==1) {
 				selectionOne = imageOne;
+				selection = 1;
 				selectDepthOne = imageOneDepth;
 			} else if(count ==2) {
+				selection = 2; //switching cases here -- might want to shift some of this stuff down into the swith case idk 
 				selectionTwo = imageOne;
 				selectDepthTwo = imageOneDepth;
 				count =0;
@@ -187,7 +180,33 @@ class MouseClickedListener extends MouseAdapter{
 		
 		if(selectionOne != null && selectionTwo!= null && selectDepthOne!= null && selectDepthTwo!=null) {
 			outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+			//System.out.println(e.getX());
+			//System.out.println(e.getY());
 			repaint();
+			
+			//need to check which selection and will change coordinates bc of that 
+			//use swith case?
+			
+			switch(selection) {
+			case 1:
+				//case that selection one is penguin image (image one)
+				if(e.getX() >= 460 && e.getX() <= 635 && e.getY() >= 120 && e.getY() <=286) {
+					System.out.println("mouse in penguins select 1");
+				}
+				break;
+			case 2:
+				//case that selection two is image one (penguin image) 
+				if(e.getX() >= 962 && e.getX() <= 1137 && e.getY() >= 120 && e.getY() <=286) {
+					System.out.println("mouse in penguins selection two");
+				}
+				break;
+			}
+			
+			
+			
+			
+			
+			
 		}
 		
 	}
@@ -207,6 +226,10 @@ class MouseClickedListener extends MouseAdapter{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+		//make sure that they have selected images - that they arent null
+		//check here for the pixel colour?? - then bounding boxes 
+		//rgb(151, 151, 151) -- for the penguins depth map 
 		
 	}
 
