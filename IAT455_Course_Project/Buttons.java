@@ -17,9 +17,14 @@ public class Buttons extends IAT455_Course_Project {
         this.setSize(1500, 800); // Make sure the frame is large enough
         this.setVisible(true); 
     
+        int buttonWidth = 150;
+        int buttonHeight = 30;
+        int xPosition = this.getWidth() - buttonWidth - 30; // 30 pixels from the right edge
+        int yPosition = this.getHeight() - buttonHeight - 150; // 150 pixels from the bottom
+
         // Add the download button
         JButton downloadButton = new JButton("Download Image");
-        downloadButton.setBounds(650, 550, 150, 30); // Set the position and size
+        downloadButton.setBounds(xPosition, yPosition, buttonWidth, buttonHeight); // Position adjusted
         this.add(downloadButton);
         downloadButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -29,7 +34,7 @@ public class Buttons extends IAT455_Course_Project {
 
         // Add the refresh button
         JButton refreshButton = new JButton("Refresh");
-        refreshButton.setBounds(850, 550, 150, 30); // Adjust position and size as needed
+        refreshButton.setBounds(xPosition, yPosition - buttonHeight - 10, buttonWidth, buttonHeight); // Position adjusted
         this.add(refreshButton);
         refreshButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
