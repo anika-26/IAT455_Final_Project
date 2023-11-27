@@ -200,14 +200,20 @@ class MouseClickedListener extends MouseAdapter{
 					//now check which mouse button it was 
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
+						
+						
 						//increase brightness 
 						selectDepthOne = leftClick(imageOneDepth);
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
-						
 						repaint();
 						
 					} else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthOne = rightClick(imageOneDepth);
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
 					}
 				}
 				break;
@@ -260,7 +266,7 @@ class MouseClickedListener extends MouseAdapter{
 		
 }
 
-//method to increase brightenss
+//method to increase brightness of object 
 public BufferedImage leftClick(BufferedImage src) {
 	BufferedImage result = new BufferedImage(src.getWidth(),
 			src.getHeight(), src.getType());
@@ -277,6 +283,31 @@ public BufferedImage leftClick(BufferedImage src) {
 				int newR = clip(r *2);
 				int newG = clip(g*2);
 				int newB = clip(b*2);
+				result.setRGB(i, j, new Color(newR, newG, newB).getRGB());
+			}
+		}
+		}
+	
+	return result;
+}
+
+//method to decrease the brightness of depth image
+public BufferedImage rightClick(BufferedImage src) {
+	BufferedImage result = new BufferedImage(src.getWidth(),
+			src.getHeight(), src.getType());
+	
+	for (int i = 0; i < result.getWidth(); i++) {
+		for (int j = 0; j < result.getHeight(); j++) {
+			int rgb = src.getRGB(i, j);
+			int r= getRed(rgb);
+			int g = getGreen(rgb);
+			int b = getBlue(rgb);
+			
+			int penguins = new Color(151, 151,151).getRGB();
+			if(rgb == penguins) {
+				int newR = clip(r /2);
+				int newG = clip(g/2);
+				int newB = clip(b/2);
 				result.setRGB(i, j, new Color(newR, newG, newB).getRGB());
 			}
 		}
