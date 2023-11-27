@@ -70,16 +70,16 @@ class IAT455_Course_Project extends Frame {
 			imageTwo = ImageIO.read(new File("lake.jpg"));
 			imageThree = ImageIO.read(new File("boatimage.jpg"));
 			imageFour = ImageIO.read(new File("beachimage.jpg"));
-			imageFive = ImageIO.read(new File("treeimage.jpg"));
-			imageSix = ImageIO.read(new File("fallpark.jpg"));
+			imageFive = ImageIO.read(new File("treesunset.jpg"));
+			
 		
 			//load corresponding depth images
 			imageOneDepth = ImageIO.read(new File("penguinsdepth.png"));
 			imageTwoDepth = ImageIO.read(new File("lake_depth.png"));
 			imageThreeDepth = ImageIO.read(new File("boatimage_depth.png"));
 			imageFourDepth = ImageIO.read(new File("beachimage_depth.png"));
-			imageFiveDepth = ImageIO.read(new File("treeimage_depth.png"));
-			imageSixDepth = ImageIO.read(new File("fallpark_depth.png"));
+			imageFiveDepth = ImageIO.read(new File("treesunset_depth.png"));
+			
 			
 			
 
@@ -388,15 +388,48 @@ class MouseClickedListener extends MouseAdapter{
 			case 7:
 				System.out.println("case 7");
 				System.out.println(e.getX());
+				System.out.println(e.getY());
+				
+				if(e.getX() >= 657 && e.getX() <= 827 && e.getY() >= 205 && e.getY() <= 305) {
+					//then tstuff
+					System.out.println("boundary hit 7");
+				}
 				break;
 				
 			case 8:
 				System.out.println("case 8");
 				System.out.println(e.getX());
+				System.out.println(e.getY());
+				
+				if(e.getX() >= 837 && e.getX() <= 997 && e.getY() >= 205 && e.getY() <= 305) {
+					//then stuff
+					System.out.println("boundary hit 8");
+				}
+				
+				break;
+				
+			case 9:
+				System.out.println("case 9");
+				System.out.println(e.getX());
+				System.out.println(e.getY());
+				if(e.getX() >= 629 && e.getX() <= 850 && e.getY() >= 106 && e.getY() <= 740) {
+					//then stuff
+					System.out.println("boundary hit 9");
+				} 
+				break;
+				
+			case 10:
+				System.out.println("case 10");
+				System.out.println(e.getX());
+				System.out.println(e.getY());
+				if(e.getX() >= 1128 && e.getX() <= 1349 && e.getY() >= 106 && e.getY() <= 740) {
+					//then stuff
+					System.out.println("boundary hit 10");
+				}
 				break;
 				
 			}
-			 
+			
 			
 			
 			
