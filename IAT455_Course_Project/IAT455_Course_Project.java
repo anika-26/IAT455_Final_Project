@@ -381,6 +381,24 @@ class MouseClickedListener extends MouseAdapter{
 				if(e.getX() >= 1005 && e.getX() <= 1146 && e.getY() >= 212 && e.getY() <= 277) {
 					//then tstuff
 					System.out.println("boundary hit 6");
+					
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthTwo = leftClick(imageThreeDepth, new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthTwo = rightClick(imageThreeDepth,  new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
 				}
 				break;
 			
@@ -393,10 +411,28 @@ class MouseClickedListener extends MouseAdapter{
 				if(e.getX() >= 657 && e.getX() <= 827 && e.getY() >= 205 && e.getY() <= 305) {
 					//then tstuff
 					System.out.println("boundary hit 7");
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthOne = leftClick(imageFourDepth, new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthOne = rightClick(imageFourDepth,  new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
 				}
 				break;
 				
-			case 8:
+				//case for beach image in selection two
+			case 8: 
 				System.out.println("case 8");
 				System.out.println(e.getX());
 				System.out.println(e.getY());
@@ -404,10 +440,29 @@ class MouseClickedListener extends MouseAdapter{
 				if(e.getX() >= 837 && e.getX() <= 997 && e.getY() >= 205 && e.getY() <= 305) {
 					//then stuff
 					System.out.println("boundary hit 8");
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthTwo = leftClick(imageFourDepth, new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthTwo = rightClick(imageFourDepth,  new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
 				}
 				
 				break;
 				
+			
+			//case for tree sunset image in selection one	
 			case 9:
 				System.out.println("case 9");
 				System.out.println(e.getX());
@@ -415,9 +470,27 @@ class MouseClickedListener extends MouseAdapter{
 				if(e.getX() >= 629 && e.getX() <= 850 && e.getY() >= 106 && e.getY() <= 740) {
 					//then stuff
 					System.out.println("boundary hit 9");
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthOne = leftClick(imageFiveDepth, new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthOne = rightClick(imageFiveDepth,  new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
 				} 
 				break;
 				
+			//case for tree sunset image in selection two
 			case 10:
 				System.out.println("case 10");
 				System.out.println(e.getX());
@@ -425,6 +498,23 @@ class MouseClickedListener extends MouseAdapter{
 				if(e.getX() >= 1128 && e.getX() <= 1349 && e.getY() >= 106 && e.getY() <= 740) {
 					//then stuff
 					System.out.println("boundary hit 10");
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthTwo = leftClick(imageFiveDepth, new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthTwo = rightClick(imageFiveDepth,  new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
 				}
 				break;
 				
