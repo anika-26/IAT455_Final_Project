@@ -142,6 +142,7 @@ class MouseClickedListener extends MouseAdapter{
 			} else if(count ==2) {
 				selectionTwo = imageTwo;
 				selectDepthTwo = imageTwoDepth;
+				selection =4;
 				count =0;
 			}
 			
@@ -151,8 +152,8 @@ class MouseClickedListener extends MouseAdapter{
 			if(count ==1) {
 				selectionOne = imageThree;
 				selectDepthOne = imageThreeDepth;
-				
-				count = 0;
+				selection=5;
+		
 			} else if(count ==2) {
 				selectionTwo = imageThree;
 				selectDepthTwo = imageThreeDepth;
@@ -164,7 +165,7 @@ class MouseClickedListener extends MouseAdapter{
 			if(count ==1) {
 				selectionOne = imageFour;
 				selectDepthOne = imageFourDepth;
-				count = 0;
+				
 			} else if(count ==2) {
 				selectionTwo = imageFour;
 				selectDepthTwo = imageFourDepth;
@@ -248,10 +249,10 @@ class MouseClickedListener extends MouseAdapter{
 				break;
 				
 			case 3:
-				//lake image first selection 
+				//lake image first selection  -- not fully working atm need to make the whole tree trunk same colour 
 				if(e.getX() >= 400  && e.getX() <=880 && e.getY() <=298 && e.getY() >= 216) {
-					System.out.println(e.getX());
-					System.out.println(e.getY());
+					//System.out.println(e.getX());
+				//	System.out.println(e.getY());
 					
 					//now check which mouse button it was 
 					if(e.getButton() == MouseEvent.BUTTON1) {
@@ -275,7 +276,66 @@ class MouseClickedListener extends MouseAdapter{
 				break;
 				
 			case 4:
+				// will be for case that selection two is lake image
+				if(e.getX() >= 900  && e.getX() <= 1380 && e.getY() <=298 && e.getY() >= 216) {
+					//System.out.println(e.getX());
+					//System.out.println(e.getY());
+					//now check which mouse button it was 
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthTwo = leftClick(imageTwoDepth, new Color(200, 200,200).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthTwo = rightClick(imageTwoDepth,  new Color(200, 200,200).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
+				}
+				break;
 				
+			//case for the boat image COLOUR SEARCH NEEDS FIXING 
+			case 5:
+				if(e.getX() >= 505 && e.getX() <= 646 && e.getY() >= 212 && e.getY() <= 277) {
+					//System.out.println(e.getX());
+					//System.out.println(e.getY());
+					//now check which mouse button
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthOne = leftClick(imageThreeDepth, new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthOne = rightClick(imageThreeDepth,  new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
+				}
+				break;
+			
+				//CASE FOR THE BOAT IMAGE ON SELECTION TWO 
+			case 6:
+				if(e.getX() >= 1005 && e.getX() <= 1146 && e.getY() >= 212 && e.getY() <= 277) {
+					//then tstuff
+					System.out.println("boundary hit 6");
+				}
+				break;
+				
+			case 7:
 				break;
 				
 			}
