@@ -118,15 +118,21 @@ class MouseClickedListener extends MouseAdapter{
 			//changes output image to be the image user selected on the side 
 			count+=1;
 			System.out.println(count);
+			
+		
+			
+			
+			
+			
 		if( e.getX() >= 50 && e.getX() <= width/8 && e.getY() >= 50 && e.getY() <= 50+67.5) {
 			System.out.println("in image 1 ");
 			
 			if(count ==1) {
 				selectionOne = imageOne;
-				selection = 1;
+				//selection = 1;
 				selectDepthOne = imageOneDepth;
 			} else if(count ==2) {
-				selection = 2; //switching cases here -- might want to shift some of this stuff down into the swith case idk 
+				//selection = 2; //switching cases here -- might want to shift some of this stuff down into the swith case idk 
 				selectionTwo = imageOne;
 				selectDepthTwo = imageOneDepth;
 				count =0;
@@ -138,11 +144,11 @@ class MouseClickedListener extends MouseAdapter{
 				selectionOne = imageTwo;
 				selectDepthOne = imageTwoDepth;
 				//switch case
-				selection = 3;
+				//selection = 3;
 			} else if(count ==2) {
 				selectionTwo = imageTwo;
 				selectDepthTwo = imageTwoDepth;
-				selection =4;
+				//selection =4;
 				count =0;
 			}
 			
@@ -152,12 +158,12 @@ class MouseClickedListener extends MouseAdapter{
 			if(count ==1) {
 				selectionOne = imageThree;
 				selectDepthOne = imageThreeDepth;
-				selection=5;
+				//selection=5;
 		
 			} else if(count ==2) {
 				selectionTwo = imageThree;
 				selectDepthTwo = imageThreeDepth;
-				selection = 6;
+				//selection = 6;
 				count =0;
 			}
 		} else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=440 && e.getY() <=440+67.5) {
@@ -166,12 +172,12 @@ class MouseClickedListener extends MouseAdapter{
 			if(count ==1) {
 				selectionOne = imageFour;
 				selectDepthOne = imageFourDepth;
-				selection = 7;
+				//selection = 7;
 				
 			} else if(count ==2) {
 				selectionTwo = imageFour;
 				selectDepthTwo = imageFourDepth;
-				selection =8;
+				//selection =8;
 				count =0;
 				
 			}
@@ -191,13 +197,34 @@ class MouseClickedListener extends MouseAdapter{
 			}
 		} 
 		
-		System.out.println(selection);
+			
 		
 		
 		if(selectionOne != null && selectionTwo!= null && selectDepthOne!= null && selectDepthTwo!=null) {
 			outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 			
 			repaint();
+			
+			//HERE neq approavh
+			
+			//CHECKS IF THE USER SELECTED THE DEPTHSELECTONE IMAGE
+			if(e.getX() >= 400 && e.getX() <= 400+width && e.getY() >= 50 && e.getY() <= 50+height) {
+				if(selectDepthOne == imageOneDepth) {
+					selection =1;
+				} 
+				if(selectDepthOne == imageTwoDepth) {
+					selection = 3;
+				}
+			}  if (e.getX() >= 900 && e.getX() <=900+width && e.getY() >= 50 && e.getY() <=50+height) {
+				//in selection 2 - user pressed 
+				
+				if(selectDepthTwo == imageOneDepth) {
+					selection = 2;
+				} 
+				if(selectDepthTwo == imageTwoDepth) {
+					selection = 4;
+				}
+			}
 			
 			//need to check which selection and will change coordinates bc of that 
 	
