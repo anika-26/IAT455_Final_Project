@@ -416,7 +416,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthOne = leftClick(imageFourDepth, new Color(189, 189,189).getRGB());
+						selectDepthOne = leftClick(imageFourDepth, new Color(245, 245,245).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -424,7 +424,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthOne = rightClick(imageFourDepth,  new Color(189, 189,189).getRGB());
+						selectDepthOne = rightClick(imageFourDepth,  new Color(245, 245,245).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -462,7 +462,7 @@ class MouseClickedListener extends MouseAdapter{
 				break;
 				
 			
-			//case for tree sunset image in selection one	
+			//case for tree sunset image in selection one	- NEED TO ADD THE SECOND TREE AS AN ELEMENT TOO
 			case 9:
 				System.out.println("case 9");
 				System.out.println(e.getX());
@@ -475,7 +475,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthOne = leftClick(imageFiveDepth, new Color(189, 189,189).getRGB());
+						selectDepthOne = leftClick(imageFiveDepth, new Color(101, 101,101).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -488,6 +488,26 @@ class MouseClickedListener extends MouseAdapter{
 						repaint();
 					}
 				} 
+				//checking for second tree
+				if(e.getX() >= 102 && e.getX() <= 565 && e.getY() >= 203 && e.getY() <= 255) {
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthOne = leftClick(imageFiveDepth, new Color(64, 64,64).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthOne = rightClick(imageFiveDepth,  new Color(64, 64,64).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
+				}
 				break;
 				
 			//case for tree sunset image in selection two
@@ -503,7 +523,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthTwo = leftClick(imageFiveDepth, new Color(189, 189,189).getRGB());
+						selectDepthTwo = leftClick(imageFiveDepth, new Color(101, 101,101).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -512,6 +532,26 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//decrease brightness 
 						selectDepthTwo = rightClick(imageFiveDepth,  new Color(189, 189,189).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
+				}
+				//checking for second tree
+				if(e.getX() >= 989 && e.getX() <= 1068 && e.getY() >= 203 && e.getY() <= 255) {
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthOne = leftClick(imageFiveDepth, new Color(64, 64,64).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthOne = rightClick(imageFiveDepth,  new Color(64, 64,64).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
