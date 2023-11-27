@@ -137,6 +137,8 @@ class MouseClickedListener extends MouseAdapter{
 			if(count ==1) {
 				selectionOne = imageTwo;
 				selectDepthOne = imageTwoDepth;
+				//switch case
+				selection = 3;
 			} else if(count ==2) {
 				selectionTwo = imageTwo;
 				selectDepthTwo = imageTwoDepth;
@@ -149,6 +151,8 @@ class MouseClickedListener extends MouseAdapter{
 			if(count ==1) {
 				selectionOne = imageThree;
 				selectDepthOne = imageThreeDepth;
+				
+				count = 0;
 			} else if(count ==2) {
 				selectionTwo = imageThree;
 				selectDepthTwo = imageThreeDepth;
@@ -160,6 +164,7 @@ class MouseClickedListener extends MouseAdapter{
 			if(count ==1) {
 				selectionOne = imageFour;
 				selectDepthOne = imageFourDepth;
+				count = 0;
 			} else if(count ==2) {
 				selectionTwo = imageFour;
 				selectDepthTwo = imageFourDepth;
@@ -184,12 +189,11 @@ class MouseClickedListener extends MouseAdapter{
 		
 		if(selectionOne != null && selectionTwo!= null && selectDepthOne!= null && selectDepthTwo!=null) {
 			outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
-			//System.out.println(e.getX());
-			//System.out.println(e.getY());
+			
 			repaint();
 			
 			//need to check which selection and will change coordinates bc of that 
-			//use swith case?
+	
 			
 			switch(selection) {
 			case 1:
@@ -203,7 +207,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						
 						//increase brightness 
-						selectDepthOne = leftClick(imageOneDepth);
+						selectDepthOne = leftClick(imageOneDepth, new Color(151, 151,151).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -211,7 +215,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthOne = rightClick(imageOneDepth);
+						selectDepthOne = rightClick(imageOneDepth, new Color(151, 151,151).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -221,8 +225,59 @@ class MouseClickedListener extends MouseAdapter{
 				//case that selection two is image one (penguin image) 
 				if(e.getX() >= 962 && e.getX() <= 1137 && e.getY() >= 120 && e.getY() <=286) {
 					System.out.println("mouse in penguins selection two");
+					
+					
+					//now check which mouse button it was 
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+						selectDepthTwo = leftClick(imageOneDepth, new Color(151, 151,151).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthTwo = rightClick(imageOneDepth, new Color(151, 151,151).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
 				}
 				break;
+				
+			case 3:
+				//lake image first selection 
+				if(e.getX() >= 400  && e.getX() <=880 && e.getY() <=298 && e.getY() >= 216) {
+					System.out.println(e.getX());
+					System.out.println(e.getY());
+					
+					//now check which mouse button it was 
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//increase brightness 
+
+						selectDepthOne = leftClick(imageTwoDepth, new Color(200, 200,200).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//decrease brightness 
+						selectDepthOne = rightClick(imageTwoDepth,  new Color(200, 200,200).getRGB());
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
+				}
+				break;
+				
+			case 4:
+				
+				break;
+				
 			}
 			 
 			
@@ -267,7 +322,7 @@ class MouseClickedListener extends MouseAdapter{
 }
 
 //method to increase brightness of object 
-public BufferedImage leftClick(BufferedImage src) {
+public BufferedImage leftClick(BufferedImage src, int elementColour) {
 	BufferedImage result = new BufferedImage(src.getWidth(),
 			src.getHeight(), src.getType());
 	
@@ -279,7 +334,7 @@ public BufferedImage leftClick(BufferedImage src) {
 			int b = getBlue(rgb);
 			
 			int penguins = new Color(151, 151,151).getRGB();
-			if(rgb == penguins) {
+			if(rgb == elementColour) {
 				int newR = clip(r *2);
 				int newG = clip(g*2);
 				int newB = clip(b*2);
@@ -292,7 +347,7 @@ public BufferedImage leftClick(BufferedImage src) {
 }
 
 //method to decrease the brightness of depth image
-public BufferedImage rightClick(BufferedImage src) {
+public BufferedImage rightClick(BufferedImage src, int elementColour) {
 	BufferedImage result = new BufferedImage(src.getWidth(),
 			src.getHeight(), src.getType());
 	
@@ -303,8 +358,8 @@ public BufferedImage rightClick(BufferedImage src) {
 			int g = getGreen(rgb);
 			int b = getBlue(rgb);
 			
-			int penguins = new Color(151, 151,151).getRGB();
-			if(rgb == penguins) {
+			//int penguins = new Color(151, 151,151).getRGB();
+			if(rgb == elementColour) {
 				int newR = clip(r /2);
 				int newG = clip(g/2);
 				int newB = clip(b/2);
