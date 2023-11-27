@@ -215,6 +215,15 @@ class MouseClickedListener extends MouseAdapter{
 				if(selectDepthOne == imageTwoDepth) {
 					selection = 3;
 				}
+				if(selectDepthOne == imageThreeDepth) {
+					selection =5;
+				}
+				if(selectDepthOne == imageFourDepth) {
+					selection = 7;
+				}
+				if(selectDepthOne == imageFiveDepth) {
+					selection = 9;
+				}
 			}  if (e.getX() >= 900 && e.getX() <=900+width && e.getY() >= 50 && e.getY() <=50+height) {
 				//in selection 2 - user pressed 
 				
@@ -223,6 +232,13 @@ class MouseClickedListener extends MouseAdapter{
 				} 
 				if(selectDepthTwo == imageTwoDepth) {
 					selection = 4;
+				} if(selectDepthTwo == imageThreeDepth) {
+					selection = 6;
+				}
+				if(selectDepthTwo == imageFourDepth) {
+					selection = 8;
+				}if(selectDepthTwo == imageFiveDepth) {
+					selection = 10;
 				}
 			}
 			
