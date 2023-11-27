@@ -171,8 +171,9 @@ class MouseClickedListener extends MouseAdapter{
 			} else if(count ==2) {
 				selectionTwo = imageFour;
 				selectDepthTwo = imageFourDepth;
-				count =0;
 				selection =8;
+				count =0;
+				
 			}
 		} 
 		else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=570 && e.getY() <=570+67.5) {
@@ -190,7 +191,7 @@ class MouseClickedListener extends MouseAdapter{
 			}
 		} 
 		
-		
+		System.out.println(selection);
 		
 		
 		if(selectionOne != null && selectionTwo!= null && selectDepthOne!= null && selectDepthTwo!=null) {
@@ -339,9 +340,16 @@ class MouseClickedListener extends MouseAdapter{
 					System.out.println("boundary hit 6");
 				}
 				break;
-				
+			
+				//case for the beach image on selection one
 			case 7:
+				System.out.println("case 7");
+				System.out.println(e.getX());
+				break;
 				
+			case 8:
+				System.out.println("case 8");
+				System.out.println(e.getX());
 				break;
 				
 			}
