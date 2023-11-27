@@ -49,6 +49,8 @@ class IAT455_Course_Project extends Frame {
 	BufferedImage imageFiveDepth;
 	BufferedImage imageSixDepth;
 	
+	BufferedImage testpenguins;
+	
 	BufferedImage selectionOne, selectionTwo, selectDepthOne, selectDepthTwo;
 	
 	//int to count how many clicks of mouse 
@@ -102,6 +104,8 @@ class IAT455_Course_Project extends Frame {
 				}//end WindowAdapter
 				);//end addWindowListener
 	}// end constructor
+	
+	
 	
 	
 class MouseClickedListener extends MouseAdapter{
@@ -192,6 +196,19 @@ class MouseClickedListener extends MouseAdapter{
 				//case that selection one is penguin image (image one)
 				if(e.getX() >= 460 && e.getX() <= 635 && e.getY() >= 120 && e.getY() <=286) {
 					System.out.println("mouse in penguins select 1");
+					
+					//now check which mouse button it was 
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						//increase brightness 
+						selectDepthOne = leftClick(imageOneDepth);
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						
+						repaint();
+						
+					} else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+					}
 				}
 				break;
 			case 2:
@@ -243,7 +260,30 @@ class MouseClickedListener extends MouseAdapter{
 		
 }
 
-
+//method to increase brightenss
+public BufferedImage leftClick(BufferedImage src) {
+	BufferedImage result = new BufferedImage(src.getWidth(),
+			src.getHeight(), src.getType());
+	
+	for (int i = 0; i < result.getWidth(); i++) {
+		for (int j = 0; j < result.getHeight(); j++) {
+			int rgb = src.getRGB(i, j);
+			int r= getRed(rgb);
+			int g = getGreen(rgb);
+			int b = getBlue(rgb);
+			
+			int penguins = new Color(151, 151,151).getRGB();
+			if(rgb == penguins) {
+				int newR = clip(r *2);
+				int newG = clip(g*2);
+				int newB = clip(b*2);
+				result.setRGB(i, j, new Color(newR, newG, newB).getRGB());
+			}
+		}
+		}
+	
+	return result;
+}
 
 
 public BufferedImage composite(BufferedImage src1, BufferedImage src2,
@@ -291,7 +331,11 @@ public BufferedImage composite(BufferedImage src1, BufferedImage src2,
 //hover - show depth map of the image 
 //for right click - lighter and left click darker for depth map of an element 
 //use bounding boxes instead of stroke 
-
+private int clip(int v) {
+	v = v > 255 ? 255 : v;
+	v = v <0 ? 0 :v;
+	return v;
+}
 
 protected int getAlpha(int pixel) {
 	return (pixel >>> 24) & 0xFF;
@@ -359,7 +403,7 @@ public void paint(Graphics g) {
 	g.drawImage(selectDepthOne,400,50,w, h,this);
 	g.drawImage(selectDepthTwo,900,50,w, h,this);
 	
-	
+	g.drawImage(testpenguins,900,50,w, h,this); // remove later
 	//output image 
 	g.drawImage(outputImage,650,400,w, h,this);
 	//g.drawImage(imageOneDepth,560,200,w/4, h/4,this);
