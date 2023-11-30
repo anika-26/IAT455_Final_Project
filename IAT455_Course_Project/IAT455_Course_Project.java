@@ -21,6 +21,9 @@ import java.awt.image.WritableRaster;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 
 
 //if user clicks the bound box and the colour is a certain colour - then adjust the depth of those pixels 
@@ -724,12 +727,12 @@ protected int getRed2(int pixel) {
 	return (new Color(pixel).getRed());
 }
 public void paint(Graphics g) {
+	super.paint(g);
 	
 	//if working with different images, this may need to be adjusted
 	int w = width/4 ; 
 	int h = height/4 ;
 	
-
 	
 	//image titles
 //	g.drawString("Image 1", 50, 70);
