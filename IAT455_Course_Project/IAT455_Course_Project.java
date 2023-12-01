@@ -1,6 +1,7 @@
-/*File Exercise1.java
+/*
 
  IAT455 - Course project 
+ Anika Richards, Anneke Kluft, Jigang Zhou
 
  **********************************************************/
 import java.awt.Color;
@@ -25,24 +26,16 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 
-
-//if user clicks the bound box and the colour is a certain colour - then adjust the depth of those pixels 
-/////
-
-
 class IAT455_Course_Project extends Frame { 
 	
-	//images set up 
+	//setting up image variables 
 	BufferedImage imageOne;
 	BufferedImage imageTwo;
 	BufferedImage imageThree;
 	BufferedImage imageFour;
 	BufferedImage imageFive;
-
 	
-	
-	BufferedImage outputImage; // use later for middle edited image 
-	
+	BufferedImage outputImage; 
 	
 	//depth images
 	BufferedImage imageOneDepth;
@@ -51,14 +44,12 @@ class IAT455_Course_Project extends Frame {
 	BufferedImage imageFourDepth;
 	BufferedImage imageFiveDepth;
 
-	
-	BufferedImage testpenguins;
-	
+	//to store user selections 
 	BufferedImage selectionOne, selectionTwo, selectDepthOne, selectDepthTwo;
 	
-	//int to count how many clicks of mouse 
+	//int to count how many clicks of mouse - used for determine whether a selected image is the first or second image (for displayal and case switches later)
 	int count =0;
-	int selection=0;
+	int selection=0; //variable used for switch case 
 
 	int width; // width of the image
 	int height; // height of the image
@@ -83,8 +74,6 @@ class IAT455_Course_Project extends Frame {
 			imageFourDepth = ImageIO.read(new File("beachimage_depth.png"));
 			imageFiveDepth = ImageIO.read(new File("treesunset_depth.png"));
 			
-			
-			
 
 		} catch (Exception e) {
 			System.out.println("Cannot load the provided image");
@@ -93,8 +82,12 @@ class IAT455_Course_Project extends Frame {
 		this.setTitle("IAT 455 Course Project");
 		this.setVisible(true);
 		
+		
+		//getting width and height of image one - all of the images are same size 
 		width = imageOne.getWidth();
 		height = imageOne.getHeight();
+		
+		//setting up the mouse listener to listen for mouse events 
 		addMouseListener(new MouseClickedListener());
 		
 		
@@ -110,105 +103,131 @@ class IAT455_Course_Project extends Frame {
 	
 	
 	
-	
+//class for mouse clicked listener 	
 class MouseClickedListener extends MouseAdapter{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-			System.out.println("mouse clicked");
-			
-		//check if in range of the image one  -- FIX UP SIZE LATER !!!!!!!
-			//changes output image to be the image user selected on the side 
-			count+=1;
-			System.out.println(count);
-			
-			
-			
+		
+		System.out.println(count);
+		
+		
+		//checks if the user has clicked the mouse in the area of the first image by getting the mouse's x and y coordinates and ensuring these are in the bounds of the image
 		if( e.getX() >= 50 && e.getX() <= width/8 && e.getY() >= 50 && e.getY() <= 50+67.5) {
+			
+			count+=1; // adding one to the count tracker to keep track of how many times the user clicked mouse on an image 
+			
 			System.out.println("in image 1 ");
 			
+			//if count is 1 then this is their first selected image so sets the selection one variable to image one and the first selection depth image to image one depth 
 			if(count ==1) {
 				selectionOne = imageOne;
-				//selection = 1;
 				selectDepthOne = imageOneDepth;
-			} else if(count ==2) {
-				//selection = 2; //switching cases here -- might want to shift some of this stuff down into the swith case idk 
+			} 
+			//if count is 2 then this is their second selected image so sets the selection two variable to image one and the second selection depth image to image one depth 
+			else if(count ==2) {
 				selectionTwo = imageOne;
 				selectDepthTwo = imageOneDepth;
-				count =0;
+				count =0; //resets the counter 
 			}
 			
-		}  if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >= 180 && e.getY() <= 180+67.6) {
+		}  
+		
+		//checks if the user has clicked the mouse in the area of the second image by getting the mouse's x and y coordinates and ensuring these are in the bounds of the image
+		if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >= 180 && e.getY() <= 180+67.6) {
+			
+			count+=1;// adding one to the count tracker to keep track of how many times the user clicked mouse on an image 
+			
 			System.out.println("in image 2");
+			
+			//if count is 1 then this is their first selected image so sets the selection one variable to image two and the first selection depth image to image two depth
 			if(count ==1) {
 				selectionOne = imageTwo;
 				selectDepthOne = imageTwoDepth;
-				//switch case
-				//selection = 3;
-			} else if(count ==2) {
+			} 
+			//if count is 2 then this is their second selected image so sets the selection two variable to image two and the second selection depth image to image two depth 
+			else if(count ==2) {
 				selectionTwo = imageTwo;
 				selectDepthTwo = imageTwoDepth;
-				//selection =4;
-				count =0;
+				count =0; // resets the counter 
 			}
 			
-		}  if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=310 && e.getY() <=310+67.5) {
+		}  
+		
+		//checks if the user has clicked the mouse in the area of the third image by getting the mouse's x and y coordinates and ensuring these are in the bounds of the image
+		if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=310 && e.getY() <=310+67.5) {
+			
+			count+=1;// adding one to the count tracker to keep track of how many times the user clicked mouse on an image 
+			
 			System.out.println("In image 3");
 		
+			//if count is 1 then this is their first selected image so sets the selection one variable to image three and the first selection depth image to image three depth
 			if(count ==1) {
 				selectionOne = imageThree;
 				selectDepthOne = imageThreeDepth;
-				//selection=5;
 		
-			} else if(count ==2) {
+			} 
+			//if count is 2 then this is their second selected image so sets the selection two variable to image three and the second selection depth image to image three depth 
+			else if(count ==2) {
 				selectionTwo = imageThree;
 				selectDepthTwo = imageThreeDepth;
-				//selection = 6;
-				count =0;
+				count =0; // resets the counter
 			}
-		}  if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=440 && e.getY() <=440+67.5) {
+		}  
+		
+		//checks if the user has clicked the mouse in the area of the fourth image by getting the mouse's x and y coordinates and ensuring these are in the bounds of the image
+		if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=440 && e.getY() <=440+67.5) {
+			
+			count+=1;// adding one to the count tracker to keep track of how many times the user clicked mouse on an image 
+			
 			System.out.println("In image 4");
 		
+			//if count is 1 then this is their first selected image so sets the selection one variable to image four and the first selection depth image to image four depth
 			if(count ==1) {
 				selectionOne = imageFour;
 				selectDepthOne = imageFourDepth;
-				//selection = 7;
 				
-			} else if(count ==2) {
+			} 
+			//if count is 2 then this is their second selected image so sets the selection two variable to image four and the second selection depth image to image four depth 
+			else if(count ==2) {
 				selectionTwo = imageFour;
 				selectDepthTwo = imageFourDepth;
-				//selection =8;
-				count =0;
-				
+				count =0; //resets the counter
 			}
 		} 
-		 if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=570 && e.getY() <=570+67.5) {
+		//checks if the user has clicked the mouse in the area of the fifth image by getting the mouse's x and y coordinates and ensuring these are in the bounds of the image
+		if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=570 && e.getY() <=570+67.5) {
+			
 			System.out.println("In image 5");
-		
+			
+			count+=1;// adding one to the count tracker to keep track of how many times the user clicked mouse on an image 
+			
+			//if count is 1 then this is their first selected image so sets the selection one variable to image five and the first selection depth image to image five depth
 			if(count ==1) {
 				selectionOne = imageFive;
 				selectDepthOne = imageFiveDepth;
-				selection = 9;
-			} else if(count ==2) {
+			} 
+			//if count is 2 then this is their first selected image so sets the selection one variable to image five and the first selection depth image to image five depth
+			else if(count ==2) {
 				selectionTwo = imageFive;
 				selectDepthTwo = imageFiveDepth;
-				count =0;
-				selection = 10;
+				count =0; //resets the counter
+			
 			}
 		} 
 		
-			
-		
-		
+		//checks to make sure that the user has selected two images (aka the selected image variables and their coresponding depth images)
 		if(selectionOne != null && selectionTwo!= null && selectDepthOne!= null && selectDepthTwo!=null) {
+			
+			//calls the composite method to combine the two images that the user has selected 
 			outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 			
-			repaint();
+			repaint(); //repaints scene to show the changes 
 			
-			
-			
-			//CHECKS IF THE USER SELECTED THE DEPTHSELECTONE IMAGE
+			//checks if the user clicked on the first or left depth image (for editing the depth of elements )  
+			// then checks which of the images the selected depth image one is and will set the appropriate case for that 
 			if(e.getX() >= 400 && e.getX() <= 400+width && e.getY() >= 50 && e.getY() <= 50+height) {
+				
 				if(selectDepthOne == imageOneDepth) {
 					selection =1;
 				} 
@@ -224,8 +243,11 @@ class MouseClickedListener extends MouseAdapter{
 				if(selectDepthOne == imageFiveDepth) {
 					selection = 9;
 				}
-			}  if (e.getX() >= 900 && e.getX() <=900+width && e.getY() >= 50 && e.getY() <=50+height) {
-				//in selection 2 - user pressed 
+			}  
+			
+			//checks if the user clicked on the second or right depth image (for editing the depth of elements )
+			// then checks which of the images the selected depth image one is and will set the appropriate case for that 
+			if (e.getX() >= 900 && e.getX() <=900+width && e.getY() >= 50 && e.getY() <=50+height) {
 				
 				if(selectDepthTwo == imageOneDepth) {
 					selection = 2;
@@ -241,219 +263,271 @@ class MouseClickedListener extends MouseAdapter{
 					selection = 10;
 				}
 			}
-			
-			//need to check which selection and will change coordinates bc of that 
 	
-			
+			//switch case to handle the different cases of the specific images and which side they are on (whether they are selection one or two)
 			switch(selection) {
+			
+			//case that selection one is penguin image (image one)
 			case 1:
-				//case that selection one is penguin image (image one)
+				
+				//checks whether the mouse is in the boundary of the penguins element in the image 
 				if(e.getX() >= 460 && e.getX() <= 635 && e.getY() >= 120 && e.getY() <=286) {
+					
 					System.out.println("mouse in penguins select 1");
 					
-					//now check which mouse button it was 
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
 						
-						//increase brightness 
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthOne = leftClick(imageOneDepth, new Color(151, 151,151).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						
+						//repaints scene 
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthOne = rightClick(imageOneDepth, new Color(151, 151,151).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						
+						//repaints scene 
 						repaint();
 					}
 				}
 				break;
+			
+			//case that selection two is image one
 			case 2:
-				//case that selection two is image one (penguin image) 
+				
+				//checks whether the mouse is in the boundary of the penguins element in the image 
 				if(e.getX() >= 962 && e.getX() <= 1137 && e.getY() >= 120 && e.getY() <=286) {
 					System.out.println("mouse in penguins selection two");
 					
 					
-					//now check which mouse button it was 
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
-						//increase brightness 
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthTwo = leftClick(imageOneDepth, new Color(151, 151,151).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthTwo = rightClick(imageOneDepth, new Color(151, 151,151).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
 				}
 				break;
-				
+			
+			//case that the second image is selection one 
 			case 3:
-				//lake image first selection  -- not fully working atm need to make the whole tree trunk same colour 
+				
+				
+				//checks if mouse is in boundary of the tree element 
 				if(e.getX() >= 400  && e.getX() <=880 && e.getY() <=298 && e.getY() >= 216) {
-					//System.out.println(e.getX());
-				//	System.out.println(e.getY());
+				
 					
-					//now check which mouse button it was 
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
-						//increase brightness 
-
+						
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthOne = leftClick(imageTwoDepth, new Color(242, 242,242).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthOne = rightClick(imageTwoDepth,  new Color(242, 242,242).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
 				}
 				break;
-				
+			
+			//case that selection two is image two 
 			case 4:
-				// will be for case that selection two is lake image
+				//checks if in boundary of tree element 
 				if(e.getX() >= 900  && e.getX() <= 1380 && e.getY() <=298 && e.getY() >= 216) {
-					//System.out.println(e.getX());
-					//System.out.println(e.getY());
-					//now check which mouse button it was 
-					if(e.getButton() == MouseEvent.BUTTON1) {
-						System.out.println("left click");
-						
-						//increase brightness 
-
-						selectDepthTwo = leftClick(imageTwoDepth, new Color(242, 242,242).getRGB());
-						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
-						repaint();
-						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
-						System.out.println("right click");
-						
-						//decrease brightness 
-						selectDepthTwo = rightClick(imageTwoDepth,  new Color(242, 242,242).getRGB());
-						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
-						repaint();
-					}
-				}
-				break;
-				
-			//case for the boat image COLOUR SEARCH NEEDS FIXING 
-			case 5:
-				if(e.getX() >= 505 && e.getX() <= 646 && e.getY() >= 212 && e.getY() <= 277) {
-					//System.out.println(e.getX());
-					//System.out.println(e.getY());
-					//now check which mouse button
-					if(e.getButton() == MouseEvent.BUTTON1) {
-						System.out.println("left click");
-						
-						//increase brightness 
-
-						selectDepthOne = leftClick(imageThreeDepth, new Color(199, 199,199).getRGB());
-						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
-						repaint();
-						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
-						System.out.println("right click");
-						
-						//decrease brightness 
-						selectDepthOne = rightClick(imageThreeDepth,  new Color(199, 199,199).getRGB());
-						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
-						repaint();
-					}
-				}
-				break;
-			
-				//CASE FOR THE BOAT IMAGE ON SELECTION TWO 
-			case 6:
-				if(e.getX() >= 1005 && e.getX() <= 1146 && e.getY() >= 212 && e.getY() <= 277) {
-					//then tstuff
-					System.out.println("boundary hit 6");
 					
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
-						//increase brightness 
-
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
+						selectDepthTwo = leftClick(imageTwoDepth, new Color(242, 242,242).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					}
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
+						selectDepthTwo = rightClick(imageTwoDepth,  new Color(242, 242,242).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
+				}
+				break;
+				
+			//case for if selection one is the third image
+			case 5:
+				
+				//checks if click is in boundary of the boat 
+				if(e.getX() >= 505 && e.getX() <= 646 && e.getY() >= 212 && e.getY() <= 277) {
+				
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
+						selectDepthOne = leftClick(imageThreeDepth, new Color(199, 199,199).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+						
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
+						System.out.println("right click");
+						
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
+						selectDepthOne = rightClick(imageThreeDepth,  new Color(199, 199,199).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
+						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
+						repaint();
+					}
+				}
+				break;
+			
+			//case for if selection two is image three 
+			case 6:
+				
+				//checks if click is in boundary of the boat 
+				if(e.getX() >= 1005 && e.getX() <= 1146 && e.getY() >= 212 && e.getY() <= 277) {
+					
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
+					if(e.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("left click");
+						
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthTwo = leftClick(imageThreeDepth, new Color(199, 199,199).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
 						selectDepthTwo = rightClick(imageThreeDepth,  new Color(199, 199,199).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
 				}
 				break;
 			
-				//case for the beach image on selection one
+			// case where selection one is image four 
 			case 7:
-				System.out.println("case 7");
-				System.out.println(e.getX());
-				System.out.println(e.getY());
 				
+				//checks if click is in boundary of the boat 
 				if(e.getX() >= 657 && e.getX() <= 827 && e.getY() >= 205 && e.getY() <= 305) {
-					//then tstuff
-					System.out.println("boundary hit 7");
+					
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
-						//increase brightness 
-
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthOne = leftClick(imageFourDepth, new Color(255, 255,255).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
 						selectDepthOne = rightClick(imageFourDepth,  new Color(255, 255,255).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
 				}
 				break;
 				
-				//case for beach image in selection two
+			//case for image four in selection two
 			case 8: 
-				System.out.println("case 8");
-				System.out.println(e.getX());
-				System.out.println(e.getY());
 				
+				//checks if click is in boundary of the boat 
 				if(e.getX() >= 837 && e.getX() <= 997 && e.getY() >= 205 && e.getY() <= 305) {
-					//then stuff
-					System.out.println("boundary hit 8");
+				
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
-						
-						//increase brightness 
-
+				
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthTwo = leftClick(imageFourDepth, new Color(255, 255,255).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
 						selectDepthTwo = rightClick(imageFourDepth,  new Color(255, 255,255).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -462,48 +536,59 @@ class MouseClickedListener extends MouseAdapter{
 				break;
 				
 			
-			//case for tree sunset image in selection one	- NEED TO ADD THE SECOND TREE AS AN ELEMENT TOO
+			//case for image five in selection one
 			case 9:
-				System.out.println("case 9");
-				System.out.println(e.getX());
-				System.out.println(e.getY());
+				
+				//checks if click is in the tree 
 				if(e.getX() >= 629 && e.getX() <= 850 && e.getY() >= 106 && e.getY() <= 740) {
-					//then stuff
-					System.out.println("boundary hit 9");
+					
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map 
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
-						//increase brightness 
-
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthOne = leftClick(imageFiveDepth, new Color(221, 221,221).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
 						selectDepthOne = rightClick(imageFiveDepth,  new Color(221, 221,221).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
 				} 
 				//checking for second tree
 				if(e.getX() >= 102 && e.getX() <= 565 && e.getY() >= 203 && e.getY() <= 255) {
+					
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
-						//increase brightness 
-
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthOne = leftClick(imageFiveDepth, new Color(167, 167,167).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					}
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
 						selectDepthOne = rightClick(imageFiveDepth,  new Color(167, 167,167).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -516,22 +601,27 @@ class MouseClickedListener extends MouseAdapter{
 				System.out.println(e.getX());
 				System.out.println(e.getY());
 				if(e.getX() >= 1128 && e.getX() <= 1349 && e.getY() >= 106 && e.getY() <= 740) {
-					//then stuff
-					System.out.println("boundary hit 10");
+									
+					//checks if mouse button click was the left button -- if left it will increase the brightness of selected element in image depth map
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
-						//increase brightness 
-
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthTwo = leftClick(imageFiveDepth, new Color(221, 221,221).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					} 
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
 						selectDepthTwo = rightClick(imageFiveDepth,  new Color(221, 221,221).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -541,32 +631,29 @@ class MouseClickedListener extends MouseAdapter{
 					if(e.getButton() == MouseEvent.BUTTON1) {
 						System.out.println("left click");
 						
-						//increase brightness 
-
+						//calls method left click which will increase the brightness of the pixels of the element in image (based on colour of pixels ) 
 						selectDepthOne = leftClick(imageFiveDepth, new Color(167, 167,167).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
-					} else if (e.getButton() == MouseEvent.BUTTON3) {
+					}
+					//checks if mouse button click was the right button -- if right it will decrease the brightness of selected element in image depth map 
+					else if (e.getButton() == MouseEvent.BUTTON3) {
 						System.out.println("right click");
 						
-						//decrease brightness 
+						//calls method right click which will decrease the brightness of the pixels of the element in image (based on colour of pixels )  
 						selectDepthOne = rightClick(imageFiveDepth,  new Color(167, 167, 167).getRGB());
+						
+						//calls the composite method to combine the images again with the new depth map
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
 				}
-				break;
-				
-			}
-			
-			
-			
-			
-			
-			
+				break;	
+			}		
 		}
-		
 	}
 
 	@Override
@@ -585,10 +672,6 @@ class MouseClickedListener extends MouseAdapter{
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-		//make sure that they have selected images - that they arent null
-		//check here for the pixel colour?? - then bounding boxes 
-		//rgb(151, 151, 151) -- for the penguins depth map 
-		
 	}
 
 	@Override
@@ -596,15 +679,16 @@ class MouseClickedListener extends MouseAdapter{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-		
+			
 }
 
-//method to increase brightness of object 
+//method to increase brightness of pixels of an element 
+//takes an image and RGB colour as parameters 
 public BufferedImage leftClick(BufferedImage src, int elementColour) {
 	BufferedImage result = new BufferedImage(src.getWidth(),
 			src.getHeight(), src.getType());
+	
+	//iterates through every pixel in the image and gets the rgb and specific rgb channels of the image 
 	
 	for (int i = 0; i < result.getWidth(); i++) {
 		for (int j = 0; j < result.getHeight(); j++) {
@@ -613,7 +697,8 @@ public BufferedImage leftClick(BufferedImage src, int elementColour) {
 			int g = getGreen(rgb);
 			int b = getBlue(rgb);
 			
-			int penguins = new Color(151, 151,151).getRGB();
+			//checks for pixels that match the passed in colour (meaning they are the element to be brightned) 
+			//increases the brightness of each pixel by channel and sets the result to have the new RGB
 			if(rgb == elementColour) {
 				int newR = clip(r *2);
 				int newG = clip(g*2);
@@ -626,11 +711,13 @@ public BufferedImage leftClick(BufferedImage src, int elementColour) {
 	return result;
 }
 
-//method to decrease the brightness of depth image
+//method to decrease the brightness of element in depth image
+//takes an rgb colour and an image as parameters 
 public BufferedImage rightClick(BufferedImage src, int elementColour) {
 	BufferedImage result = new BufferedImage(src.getWidth(),
 			src.getHeight(), src.getType());
 	
+	//iterates through every pixel in the image and gets the rgb and specific rgb channels of the image 
 	for (int i = 0; i < result.getWidth(); i++) {
 		for (int j = 0; j < result.getHeight(); j++) {
 			int rgb = src.getRGB(i, j);
@@ -638,7 +725,8 @@ public BufferedImage rightClick(BufferedImage src, int elementColour) {
 			int g = getGreen(rgb);
 			int b = getBlue(rgb);
 			
-			//int penguins = new Color(151, 151,151).getRGB();
+			//checks for pixels that match the passed in colour (meaning they are the element to be darkened) 
+			//decreases the brightness of each pixel by channel and sets the result to have the new RGB
 			if(rgb == elementColour) {
 				int newR = clip(r /2);
 				int newG = clip(g/2);
@@ -651,14 +739,15 @@ public BufferedImage rightClick(BufferedImage src, int elementColour) {
 	return result;
 }
 
-
+//method to combine images 
+//takes in four images as parameters - 2 normal images and their respective depth images 
 public BufferedImage composite(BufferedImage src1, BufferedImage src2,
 		BufferedImage src1_depth, BufferedImage src2_depth) {
 
 	BufferedImage result = new BufferedImage(src1.getWidth(),
 			src1.getHeight(), src1.getType());
 	
-	// Complete this method
+	//iterates through every pixel in each of the images and gets the rgb values of each of them 
 	for (int i = 0; i < result.getWidth(); i++) {
 		for (int j = 0; j < result.getHeight(); j++) {
 			int rgb1 = src1_depth.getRGB(i, j);
@@ -666,6 +755,7 @@ public BufferedImage composite(BufferedImage src1, BufferedImage src2,
 			int rgb3 = src1.getRGB(i, j);
 			int rgb4 = src2.getRGB(i, j);
 			
+			//gets the hsb value and rgb channels of the depth images 
 			float[] hsb = new float[3];
 			float[] hsb2 = new float[3];
 			int red = getRed(rgb1);
@@ -679,6 +769,8 @@ public BufferedImage composite(BufferedImage src1, BufferedImage src2,
 			hsb = Color.RGBtoHSB(red, green, blue, hsb);
 			hsb2 = Color.RGBtoHSB(red2, green2, blue2, hsb2);
 			
+			//checks which is brighter to decide whether to place the pixels in comparison to each other 
+			//brighter = in front 
 			if(hsb[2] > hsb2[2]) {
 				result.setRGB(i, j, rgb3);
 			} else {
@@ -694,9 +786,7 @@ public BufferedImage composite(BufferedImage src1, BufferedImage src2,
 }
 
 
-//hover - show depth map of the image 
-//for right click - lighter and left click darker for depth map of an element 
-//use bounding boxes instead of stroke 
+
 private int clip(int v) {
 	v = v > 255 ? 255 : v;
 	v = v <0 ? 0 :v;
@@ -726,16 +816,10 @@ protected int getRed2(int pixel) {
 public void paint(Graphics g) {
 	super.paint(g);
 	
-	//if working with different images, this may need to be adjusted
 	int w = width/4 ; 
 	int h = height/4 ;
 	
 	
-	//image titles
-//	g.drawString("Image 1", 50, 70);
-//	
-//	g.drawString("Image 2", 50, 250);
-//	g.drawString("Image 3", 50, 370);
 	Graphics2D g2 = (Graphics2D) g;
 	AffineTransform at = new AffineTransform();
 	AffineTransform oldForm = g2.getTransform(); //storing the old transform position to rotate back to after verticle text
@@ -768,11 +852,10 @@ public void paint(Graphics g) {
 	//draw the two depth maps 
 	g.drawImage(selectDepthOne,400,50,w, h,this);
 	g.drawImage(selectDepthTwo,900,50,w, h,this);
-	
-	g.drawImage(testpenguins,900,50,w, h,this); // remove later
+
 	//output image 
 	g.drawImage(outputImage,650,400,w, h,this);
-	//g.drawImage(imageOneDepth,560,200,w/4, h/4,this);
+	
 	g2.drawString("Resulting Image", 650, 390);
 	
 	this.setSize(1500, 700);
