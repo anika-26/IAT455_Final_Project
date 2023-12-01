@@ -64,6 +64,7 @@ public class Buttons extends IAT455_Course_Project {
         selectDepthOne = null;
         selectDepthTwo = null;
         outputImage = null;
+        count=0;
         repaint();
     }
 

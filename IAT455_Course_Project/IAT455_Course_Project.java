@@ -138,7 +138,7 @@ class MouseClickedListener extends MouseAdapter{
 				count =0;
 			}
 			
-		} else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >= 180 && e.getY() <= 180+67.6) {
+		}  if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >= 180 && e.getY() <= 180+67.6) {
 			System.out.println("in image 2");
 			if(count ==1) {
 				selectionOne = imageTwo;
@@ -152,7 +152,7 @@ class MouseClickedListener extends MouseAdapter{
 				count =0;
 			}
 			
-		} else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=310 && e.getY() <=310+67.5) {
+		}  if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=310 && e.getY() <=310+67.5) {
 			System.out.println("In image 3");
 		
 			if(count ==1) {
@@ -166,7 +166,7 @@ class MouseClickedListener extends MouseAdapter{
 				//selection = 6;
 				count =0;
 			}
-		} else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=440 && e.getY() <=440+67.5) {
+		}  if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=440 && e.getY() <=440+67.5) {
 			System.out.println("In image 4");
 		
 			if(count ==1) {
@@ -182,7 +182,7 @@ class MouseClickedListener extends MouseAdapter{
 				
 			}
 		} 
-		else if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=570 && e.getY() <=570+67.5) {
+		 if (e.getX() >= 50 && e.getX() <=width/8 && e.getY() >=570 && e.getY() <=570+67.5) {
 			System.out.println("In image 5");
 		
 			if(count ==1) {
