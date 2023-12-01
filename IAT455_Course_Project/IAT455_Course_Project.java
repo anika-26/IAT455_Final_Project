@@ -38,7 +38,7 @@ class IAT455_Course_Project extends Frame {
 	BufferedImage imageThree;
 	BufferedImage imageFour;
 	BufferedImage imageFive;
-	BufferedImage imageSix;
+
 	
 	
 	BufferedImage outputImage; // use later for middle edited image 
@@ -50,7 +50,7 @@ class IAT455_Course_Project extends Frame {
 	BufferedImage imageThreeDepth;
 	BufferedImage imageFourDepth;
 	BufferedImage imageFiveDepth;
-	BufferedImage imageSixDepth;
+
 	
 	BufferedImage testpenguins;
 	
@@ -121,9 +121,6 @@ class MouseClickedListener extends MouseAdapter{
 			//changes output image to be the image user selected on the side 
 			count+=1;
 			System.out.println(count);
-			
-		
-			
 			
 			
 			
@@ -208,7 +205,7 @@ class MouseClickedListener extends MouseAdapter{
 			
 			repaint();
 			
-			//HERE neq approavh
+			
 			
 			//CHECKS IF THE USER SELECTED THE DEPTHSELECTONE IMAGE
 			if(e.getX() >= 400 && e.getX() <= 400+width && e.getY() >= 50 && e.getY() <= 50+height) {
@@ -312,7 +309,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthOne = leftClick(imageTwoDepth, new Color(200, 200,200).getRGB());
+						selectDepthOne = leftClick(imageTwoDepth, new Color(242, 242,242).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -320,7 +317,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthOne = rightClick(imageTwoDepth,  new Color(200, 200,200).getRGB());
+						selectDepthOne = rightClick(imageTwoDepth,  new Color(242, 242,242).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -338,7 +335,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthTwo = leftClick(imageTwoDepth, new Color(200, 200,200).getRGB());
+						selectDepthTwo = leftClick(imageTwoDepth, new Color(242, 242,242).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -346,7 +343,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthTwo = rightClick(imageTwoDepth,  new Color(200, 200,200).getRGB());
+						selectDepthTwo = rightClick(imageTwoDepth,  new Color(242, 242,242).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -364,7 +361,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthOne = leftClick(imageThreeDepth, new Color(189, 189,189).getRGB());
+						selectDepthOne = leftClick(imageThreeDepth, new Color(199, 199,199).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -372,7 +369,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthOne = rightClick(imageThreeDepth,  new Color(189, 189,189).getRGB());
+						selectDepthOne = rightClick(imageThreeDepth,  new Color(199, 199,199).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -390,7 +387,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthTwo = leftClick(imageThreeDepth, new Color(189, 189,189).getRGB());
+						selectDepthTwo = leftClick(imageThreeDepth, new Color(199, 199,199).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -398,7 +395,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthTwo = rightClick(imageThreeDepth,  new Color(189, 189,189).getRGB());
+						selectDepthTwo = rightClick(imageThreeDepth,  new Color(199, 199,199).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -419,7 +416,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthOne = leftClick(imageFourDepth, new Color(245, 245,245).getRGB());
+						selectDepthOne = leftClick(imageFourDepth, new Color(255, 255,255).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -427,7 +424,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthOne = rightClick(imageFourDepth,  new Color(245, 245,245).getRGB());
+						selectDepthOne = rightClick(imageFourDepth,  new Color(255, 255,255).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -448,7 +445,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthTwo = leftClick(imageFourDepth, new Color(189, 189,189).getRGB());
+						selectDepthTwo = leftClick(imageFourDepth, new Color(255, 255,255).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -456,7 +453,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthTwo = rightClick(imageFourDepth,  new Color(189, 189,189).getRGB());
+						selectDepthTwo = rightClick(imageFourDepth,  new Color(255, 255,255).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -478,7 +475,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthOne = leftClick(imageFiveDepth, new Color(101, 101,101).getRGB());
+						selectDepthOne = leftClick(imageFiveDepth, new Color(221, 221,221).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -486,7 +483,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthOne = rightClick(imageFiveDepth,  new Color(189, 189,189).getRGB());
+						selectDepthOne = rightClick(imageFiveDepth,  new Color(221, 221,221).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -498,7 +495,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthOne = leftClick(imageFiveDepth, new Color(64, 64,64).getRGB());
+						selectDepthOne = leftClick(imageFiveDepth, new Color(167, 167,167).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -506,7 +503,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthOne = rightClick(imageFiveDepth,  new Color(64, 64,64).getRGB());
+						selectDepthOne = rightClick(imageFiveDepth,  new Color(167, 167,167).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -526,7 +523,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthTwo = leftClick(imageFiveDepth, new Color(101, 101,101).getRGB());
+						selectDepthTwo = leftClick(imageFiveDepth, new Color(221, 221,221).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -534,7 +531,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthTwo = rightClick(imageFiveDepth,  new Color(189, 189,189).getRGB());
+						selectDepthTwo = rightClick(imageFiveDepth,  new Color(221, 221,221).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
@@ -546,7 +543,7 @@ class MouseClickedListener extends MouseAdapter{
 						
 						//increase brightness 
 
-						selectDepthOne = leftClick(imageFiveDepth, new Color(64, 64,64).getRGB());
+						selectDepthOne = leftClick(imageFiveDepth, new Color(167, 167,167).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 						
@@ -554,7 +551,7 @@ class MouseClickedListener extends MouseAdapter{
 						System.out.println("right click");
 						
 						//decrease brightness 
-						selectDepthOne = rightClick(imageFiveDepth,  new Color(64, 64,64).getRGB());
+						selectDepthOne = rightClick(imageFiveDepth,  new Color(167, 167, 167).getRGB());
 						outputImage = composite(selectionOne, selectionTwo, selectDepthOne, selectDepthTwo);
 						repaint();
 					}
